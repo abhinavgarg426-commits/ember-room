@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ember Room | Fine Dining Restaurant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; color: #1a1a1a; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        nav { background: #0d0d0d; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; z-index: 100; }
+        .logo { font-family: 'Playfair Display', serif; color: #e63946; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { text-decoration: none; color: #fff; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: #e63946; }
+        
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600') center/cover; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 5%; }
+        .hero-sub { font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; color: #e63946; margin-bottom: 1rem; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; line-height: 1.1; }
+        .hero p { font-size: 1.1rem; max-width: 500px; opacity: 0.8; margin-bottom: 2rem; }
+        .hero-btns { display: flex; gap: 1rem; }
+        .btn-primary { background: #e63946; color: #fff; padding: 1rem 2rem; text-decoration: none; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s; }
+        .btn-primary:hover { background: #c1121f; }
+        .btn-secondary { background: transparent; color: #fff; padding: 1rem 2rem; text-decoration: none; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; border: 2px solid #fff; transition: 0.3s; }
+        .btn-secondary:hover { background: #fff; color: #0d0d0d; }
+        
+        .info-bar { background: #e63946; display: flex; justify-content: center; gap: 4rem; padding: 1.2rem 5%; color: #fff; }
+        .info-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; }
+        .info-item i { color: #fff; }
+        
+        .about { padding: 5rem 5%; display: flex; gap: 4rem; align-items: center; }
+        .about-img { flex: 1; }
+        .about-img img { width: 100%; border-radius: 5px; filter: grayscale(20%); }
+        .about-content { flex: 1; }
+        .about-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .about-content .sub { color: #e63946; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .about-content p { color: #555; margin-bottom: 1rem; }
+        .about-content .quote { border-left: 3px solid #e63946; padding-left: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: #333; margin: 2rem 0; }
+        
+        .menu-section { padding: 5rem 5%; background: #0d0d0d; color: #fff; }
+        .menu-section .section-header { text-align: center; margin-bottom: 3rem; }
+        .menu-section .section-header h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .menu-section .section-header p { color: #888; }
+        .menu-categories { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .menu-cat { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: #888; cursor: pointer; padding-bottom: 0.5rem; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .menu-cat.active { color: #e63946; border-color: #e63946; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .menu-item { display: flex; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid #333; }
+        .menu-item .dish-img { width: 80px; height: 80px; border-radius: 50%; background: #333; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .menu-item .dish-img i { color: #555; font-size: 1.5rem; }
+        .menu-item h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .menu-item .desc { font-size: 0.8rem; color: #888; margin-bottom: 0.3rem; }
+        .menu-item .price { color: #e63946; font-weight: 700; }
+        
+        .reservation { padding: 5rem 5%; background: #f8f4f0; text-align: center; }
+        .reservation h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .reservation .sub { color: #e63946; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+        .reservation p { color: #555; max-width: 500px; margin: 0 auto 2rem; }
+        .res-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .res-form input, .res-form select { padding: 1rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Lato', sans-serif; }
+        .res-form button { padding: 1rem; background: #e63946; color: #fff; border: none; border-radius: 5px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        .res-form button:hover { background: #c1121f; }
+        
+        .gallery { padding: 5rem 5%; }
+        .gallery h2 { text-align: center; font-size: 2.5rem; margin-bottom: 2rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+        .gallery-item { aspect-ratio: 1; background: #1a1a1a; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+        .gallery-item i { color: #333; font-size: 2rem; }
+        
+        .testimonials { padding: 5rem 5%; background: #f8f4f0; }
+        .testimonials h2 { text-align: center; font-size: 2.5rem; margin-bottom: 2rem; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .testimonial-card { background: #fff; padding: 2rem; border-radius: 5px; }
+        .testimonial-card .stars { color: #e63946; margin-bottom: 1rem; }
+        .testimonial-card p { font-style: italic; color: #555; margin-bottom: 1rem; }
+        .testimonial-card h4 { font-size: 0.9rem; }
+        .testimonial-card span { font-size: 0.8rem; color: #999; }
+        
+        .contact { padding: 5rem 5%; display: flex; gap: 3rem; max-width: 1000px; margin: 0 auto; }
+        .contact-info { flex: 1; }
+        .contact-info h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .contact-info > p { color: #555; margin-bottom: 2rem; }
+        .contact-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .contact-item i { color: #e63946; margin-top: 0.3rem; }
+        .contact-item strong { display: block; margin-bottom: 0.2rem; }
+        .contact-item span { font-size: 0.9rem; color: #555; }
+        .contact-map { flex: 1; background: #1a1a1a; border-radius: 5px; display: flex; align-items: center; justify-content: center; min-height: 300px; }
+        .contact-map i { color: #333; font-size: 3rem; }
+        
+        footer { background: #0d0d0d; color: #fff; padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        footer p { font-size: 0.85rem; opacity: 0.5; }
+        .footer-social { display: flex; gap: 1rem; }
+        .footer-social a { color: #888; transition: 0.3s; }
+        .footer-social a:hover { color: #e63946; }
+        
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .info-bar { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .about { flex-direction: column; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact { flex-direction: column; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">THE EMBER ROOM</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reservation" style="color:#e63946;">Reserve</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero" id="home">
+        <div class="hero-sub">Est. 2018 — Mumbai</div>
+        <h1>Where Every Meal<br>Becomes a Memory</h1>
+        <p>Modern Indian cuisine meets global flavors in an intimate setting designed for unforgettable evenings.</p>
+        <div class="hero-btns">
+            <a href="#reservation" class="btn-primary">Reserve a Table</a>
+            <a href="#menu" class="btn-secondary">View Menu</a>
+        </div>
+    </section>
+    
+    <div class="info-bar">
+        <div class="info-item"><i class="fas fa-clock"></i> Tue–Sun: 12:00 PM – 3:00 PM, 6:30 PM – 11:00 PM</div>
+        <div class="info-item"><i class="fas fa-phone"></i> +91 98765 43210</div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i> 15 Linking Road, Bandra West, Mumbai</div>
+    </div>
+    
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800" alt="Restaurant Interior">
+        </div>
+        <div class="about-content">
+            <div class="sub">Our Story</div>
+            <h2>A Passion for Flavor</h2>
+            <p>The Ember Room was born from Chef Arjun Kapoor's love for bringing people together through food. After training at Le Cordon Bleu Paris and working at Michelin-starred kitchens across Europe, he returned to Mumbai with a vision — to create a dining experience that honors Indian ingredients and techniques while embracing global inspiration.</p>
+            <p>Every dish on our menu tells a story of tradition meeting innovation — smoky tandoor flavors paired with French sauces, coastal spices elevated with Japanese precision.</p>
+            <div class="quote">"Food is the memory that stays long after the evening ends."</div>
+            <p><strong>— Chef Arjun Kapoor, Founder</strong></p>
+        </div>
+    </section>
+    
+    <section class="menu-section" id="menu">
+        <div class="section-header">
+            <h2>The Menu</h2>
+            <p>Seasonal selections, thoughtfully curated</p>
+        </div>
+        <div class="menu-categories">
+            <span class="menu-cat active">Starters</span>
+            <span class="menu-cat">Mains</span>
+            <span class="menu-cat">Desserts</span>
+            <span class="menu-cat">Drinks</span>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-utensils"></i></div>
+                <div>
+                    <h3>Charred Paneer Tikka</h3>
+                    <p class="desc">Smoked cottage cheese, bell pepper chutney, microgreens</p>
+                    <div class="price">₹650</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-utensils"></i></div>
+                <div>
+                    <h3>Lobster Bisque</h3>
+                    <p class="desc">Goan curry foam, crispy prawn, coriander oil</p>
+                    <div class="price">₹850</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-utensils"></i></div>
+                <div>
+                    <h3>Wagyu Seekh Kebab</h3>
+                    <p class="desc">A5 wagyu, saffron aioli, caramelized onion kulcha</p>
+                    <div class="price">₹1,200</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-utensils"></i></div>
+                <div>
+                    <h3>Truffle Mushroom Risotto</h3>
+                    <p class="desc">Black truffle, parmesan crisp, wild mushroom medley</p>
+                    <div class="price">₹750</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-utensils"></i></div>
+                <div>
+                    <h3>Butter Chicken Roulade</h3>
+                    <p class="desc">Deconstructed butter chicken, garlic naan, bone marrow</p>
+                    <div class="price">₹950</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-utensils"></i></div>
+                <div>
+                    <h3>Grilled Sea Bass</h3>
+                    <p class="desc"> coconut curry, mango salsa, jasmine rice</p>
+                    <div class="price">₹1,100</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="reservation" id="reservation">
+        <div class="sub">Reserve Your Table</div>
+        <h2>Join Us Tonight</h2>
+        <p>We recommend booking at least 2 days in advance for weekend dinners. Walk-ins welcome based on availability.</p>
+        <form class="res-form">
+            <input type="text" placeholder="Your Name">
+            <input type="tel" placeholder="Phone Number">
+            <input type="date">
+            <select>
+                <option>Number of Guests</option>
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3-4 Guests</option>
+                <option>5-6 Guests</option>
+                <option>7+ Guests</option>
+            </select>
+            <input type="email" placeholder="Email Address">
+            <button type="submit">Request Reservation</button>
+        </form>
+        <p style="margin-top:1rem;font-size:0.85rem;color:#888;">Or call us directly: +91 98765 43210</p>
+    </section>
+    
+    <section class="gallery" id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+            <div class="gallery-item"><i class="fas fa-image"></i></div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2>What Guests Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"One of the best dining experiences in Mumbai. The butter chicken roulade is a work of art. Every dish was perfectly seasoned and beautifully plated."</p>
+                <h4>Meera Desai</h4>
+                <span>Food Blogger, Mumbai</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Celebrated our anniversary here and it was magical. The ambiance, the service, the food — everything was exceptional. Already planning our next visit."</p>
+                <h4>Rohan & Priya</h4>
+                <span>Google Employees, Bangalore</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <h2>Visit Us</h2>
+            <p>The Ember Room is located in the heart of Bandra's dining district, just minutes from Bandstand Promenade.</p>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <strong>Address</strong>
+                    <span>15 Linking Road, Bandra West<br>Mumbai, Maharashtra 400050</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <strong>Phone</strong>
+                    <span>+91 98765 43210</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <strong>Email</strong>
+                    <span>reservations@emberroom.in</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <strong>Hours</strong>
+                    <span>Tue–Sun: 12PM–3PM, 6:30PM–11PM<br>Monday: Closed</span>
+                </div>
+            </div>
+        </div>
+        <div class="contact-map">
+            <i class="fas fa-map-marked-alt"></i>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2026 The Ember Room. All rights reserved.</p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
