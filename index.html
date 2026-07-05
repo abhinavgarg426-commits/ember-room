@@ -1,172 +1,153 @@
 <!DOCTYPE html>
-<html lang="eb">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Coconut Leaf | South Indian Vegetarian — Chennai</title>
+    <title>The Ember Room | Coastal South Indian Vegetarian — Chennai</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'DM Sans', sans-serif; background: #faf7f2; color: #1c1c1c; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        :root { --amber: #c4722b; }
 
-        /* Nav */
         nav { position: fixed; top: 0; width: 100%; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; transition: 0.4s; }
         nav.scrolled { background: rgba(26,26,26,0.95); padding: 0.8rem 5%; }
-        nav.scrolled .logo, nav.scrolled ul a, nav.scrolled .book-btn { color: #fff; }
-        nav.scrolled .book-btn { border-color: #fff; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: #1c1c1c; transition: 0.3s; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: #1c1c1c; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: #d4a843; }
-        .book-btn { background: transparent; color: #1c1c1c; padding: 0.6rem 1.5rem; border: 1px solid #1c1c1c; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .book-btn:hover { background: #1c1c1c; color: #fff; }
+        nav.scrolled .logo, nav.scrolled ul a { color: #fff; }
+        .logo { font-size: 1.1rem; font-weight: 600; color: #1c1c1c; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+        .nav-links a { color: #1c1c1c; text-decoration: none; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--amber); }
+        .book-btn { background: var(--amber); color: #fff; padding: 0.6rem 1.5rem; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        .book-btn:hover { background: #a35f23; }
 
-        /* Hero */
         .hero { min-height: 100vh; display: flex; position: relative; }
         .hero-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8rem 5% 4rem 8%; position: relative; z-index: 2; }
-        .hero-right { flex: 0.8; position: relative; overflow: hidden; }
-        .hero-right .img-placeholder { width: 100%; height: 100%; background: linear-gradient(160deg, #e8d5b7 0%, #c9a96e 50%, #8b6b3d 100%); display: flex; align-items: center; justify-content: center; }
-        .hero-right .img-placeholder i { font-size: 8rem; color: rgba(255,255,255,0.3); }
-        .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #faf7f2 0%, transparent 30%); z-index: 1; }
-        .hero-badge { display: inline-block; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #d4a843; margin-bottom: 1.5rem; border-bottom: 1px solid #d4a843; padding-bottom: 0.3rem; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero h1 em { color: #d4a843; }
-        .hero p { color: #666; font-size: 1rem; max-width: 420px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
+        .hero-badge { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero h1 em { color: var(--amber); font-style: italic; }
+        .hero p { color: #555; font-size: 1rem; max-width: 440px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
         .hero-btns { display: flex; gap: 1rem; }
-        .btn-gold { background: #d4a843; color: #fff; padding: 1rem 2rem; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; display: inline-block; }
-        .btn-gold:hover { background: #b8923a; transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: #1c1c1c; padding: 1rem 2rem; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #1c1c1c; transition: 0.3s; display: inline-block; }
-        .btn-outline:hover { background: #1c1c1c; color: #fff; }
-
+        .btn-amber { background: var(--amber); color: #fff; padding: 1rem 2rem; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; display: inline-block; }
+        .btn-amber:hover { background: #a35f23; transform: translateY(-2px); }
+        .btn-ghost { background: transparent; color: #1c1c1c; padding: 1rem 2rem; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #ccc; transition: 0.3s; display: inline-block; }
+        .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
         .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; }
-        .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #d4a843; font-weight: 600; }
-        .hero-stat .label { font-size: 0.75rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
-
+        .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--amber); font-weight: 600; }
+        .hero-stat .label { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-right { flex: 0.8; position: relative; overflow: hidden; }
+        .hero-right .img { width: 100%; height: 100%; background: linear-gradient(160deg, #2a1a0e 0%, #c4722b 50%, #e8a96a 100%); display: flex; align-items: center; justify-content: center; }
+        .hero-right .img i { font-size: 8rem; color: rgba(255,255,255,0.15); }
+        .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #faf7f2 0%, transparent 40%); z-index: 1; }
         .hero-scroll { position: absolute; bottom: 2rem; left: 8%; display: flex; align-items: center; gap: 1rem; }
-        .hero-scroll .line { width: 40px; height: 1px; background: #d4a843; }
+        .hero-scroll .line { width: 40px; height: 1px; background: var(--amber); }
         .hero-scroll span { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #999; }
 
-        /* Marquee strip */
         .strip { background: #1c1c1c; padding: 0.8rem 0; overflow: hidden; }
-        .strip-content { display: flex; animation: stripMove 15s linear infinite; white-space: nowrap; }
-        .strip-content span { color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin: 0 2.5rem; }
-        .strip-content span b { color: #d4a843; font-weight: 400; margin-right: 0.5rem; }
+        .strip-content { display: flex; animation: stripMove 16s linear infinite; white-space: nowrap; }
+        .strip-content span { color: rgba(255,255,255,0.45); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin: 0 2.5rem; }
+        .strip-content span b { color: var(--amber); font-weight: 400; }
         @keyframes stripMove { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-        /* Menu Section */
         .menu-section { padding: 6rem 5%; }
         .menu-header { text-align: center; margin-bottom: 3rem; }
-        .menu-header .label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #d4a843; }
+        .menu-label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--amber); }
         .menu-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0.5rem 0; }
         .menu-header p { color: #888; }
         .menu-cats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
         .menu-cat { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #999; cursor: pointer; padding-bottom: 0.5rem; border-bottom: 2px solid transparent; transition: 0.3s; }
-        .menu-cat.active { color: #d4a843; border-color: #d4a843; }
-
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0; max-width: 900px; margin: 0 auto; }
+        .menu-cat.active { color: var(--amber); border-color: var(--amber); }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0; max-width: 900px; margin: 0 auto; }
         .menu-item { display: flex; gap: 1.2rem; padding: 1.5rem 0; border-bottom: 1px solid #e8e0d5; align-items: flex-start; }
-        .menu-item .dish-img { width: 70px; height: 70px; background: #f0e8d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .menu-item .dish-img i { color: #d4a843; font-size: 1.5rem; }
+        .menu-item .dish-img { width: 65px; height: 65px; background: #ede5d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .menu-item .dish-img i { color: var(--amber); font-size: 1.3rem; }
         .menu-item .dish-info { flex: 1; }
-        .menu-item .dish-info h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 600; }
-        .menu-item .dish-info p { font-size: 0.8rem; color: #888; line-height: 1.5; }
-        .menu-item .price { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #d4a843; font-weight: 600; white-space: nowrap; margin-left: 1rem; }
+        .menu-item .dish-info h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.3rem; }
+        .menu-item .dish-info p { font-size: 0.8rem; color: #777; line-height: 1.5; }
+        .menu-item .price { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--amber); font-weight: 600; white-space: nowrap; margin-left: 1rem; }
 
-        /* About */
         .about-section { padding: 6rem 8%; display: flex; gap: 5rem; align-items: center; background: #1c1c1c; color: #fff; }
         .about-left { flex: 1; }
-        .about-left .img-wrap { position: relative; }
-        .about-left .main-img { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, #2a2a2a, #3a3a3a); display: flex; align-items: center; justify-content: center; }
-        .about-left .main-img i { font-size: 6rem; color: rgba(212,168,67,0.3); }
-        .about-left .floating-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: #d4a843; color: #fff; padding: 1.2rem; text-align: center; }
+        .about-left .main-img { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, #2a2a2a, #3a3020); display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+        .about-left .main-img i { font-size: 6rem; color: rgba(196,114,43,0.3); }
+        .about-left .floating-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--amber); color: #fff; padding: 1.2rem; text-align: center; }
         .about-left .floating-badge .year { font-family: 'Playfair Display', serif; font-size: 2rem; display: block; }
         .about-left .floating-badge span { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
+        .about-left { position: relative; }
         .about-right { flex: 1; }
-        .about-right .label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #d4a843; margin-bottom: 1rem; }
-        .about-right h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2; }
-        .about-right p { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; font-weight: 300; }
-        .about-right .quote { border-left: 2px solid #d4a843; padding-left: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: rgba(255,255,255,0.8); margin: 2rem 0; }
+        .about-right .tag { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
+        .about-right h2 { font-family: 'Playfair Display', serif; font-size: 2.3rem; margin-bottom: 1.5rem; line-height: 1.2; }
+        .about-right p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; font-weight: 300; }
+        .about-right .quote { border-left: 2px solid var(--amber); padding-left: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: rgba(255,255,255,0.75); margin: 2rem 0; }
+        .about-right .tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
 
-        /* Reservations */
         .reservation { padding: 6rem 5%; text-align: center; background: linear-gradient(135deg, #faf7f2, #f0e8d8); }
-        .reservation .label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #d4a843; }
+        .reservation .label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--amber); }
         .reservation h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0.5rem 0 0.5rem; }
         .reservation p { color: #888; margin-bottom: 2.5rem; max-width: 450px; margin-left: auto; margin-right: auto; }
-        .res-form { max-width: 500px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .res-form input, .res-form select { padding: 1rem; border: 1px solid #ddd; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; transition: 0.3s; }
-        .res-form input:focus, .res-form select:focus { border-color: #d4a843; }
+        .res-form { max-width: 520px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .res-form input, .res-form select { padding: 1rem; border: 1px solid #ddd; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; transition: 0.3s; border-radius: 2px; }
+        .res-form input:focus, .res-form select:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(196,114,43,0.1); }
+        .res-form input::placeholder { color: #bbb; }
         .res-form .full { grid-column: span 2; }
-        .res-form button { grid-column: span 2; padding: 1rem; background: #1c1c1c; color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .res-form button:hover { background: #d4a843; }
+        .res-form textarea { padding: 1rem; border: 1px solid #ddd; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; height: 80px; resize: none; outline: none; border-radius: 2px; grid-column: span 2; }
+        .res-form textarea:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(196,114,43,0.1); }
+        .res-form textarea::placeholder { color: #bbb; }
+        .res-form button { grid-column: span 2; padding: 1rem; background: #1c1c1c; color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; border-radius: 2px; }
+        .res-form button:hover { background: var(--amber); }
 
-        /* Testimonials */
         .testimonials { padding: 6rem 5%; }
+        .testi-header { text-align: center; margin-bottom: 3rem; }
+        .testi-header .label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--amber); }
+        .testi-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; }
         .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 800px; margin: 0 auto; }
-        .testi-card { background: #faf7f2; border: 1px solid #e8e0d5; padding: 2rem; }
-        .testi-card .quote-icon { color: #d4a843; font-size: 1.5rem; margin-bottom: 1rem; }
+        .testi-card { background: #fff; border: 1px solid #e8e0d5; padding: 2rem; border-radius: 2px; }
+        .testi-card .quote-icon { color: var(--amber); font-size: 1.5rem; margin-bottom: 1rem; }
         .testi-card p { font-size: 0.95rem; color: #555; line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
         .testi-card h4 { font-size: 0.9rem; font-family: 'DM Sans', sans-serif; font-weight: 500; }
         .testi-card span { font-size: 0.75rem; color: #999; }
 
-        /* Info bar */
-        .info-bar { background: #d4a843; padding: 2rem 5%; display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap; }
+        .info-bar { background: var(--amber); padding: 2rem 5%; display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap; }
         .info-item { display: flex; align-items: center; gap: 0.8rem; color: #fff; font-size: 0.85rem; }
-        .info-item i { font-size: 1.2rem; }
+        .info-item i { font-size: 1.1rem; }
 
-        /* Gallery */
-        .gallery { padding: 4rem 0; background: #fff; }
-        .gallery-header { text-align: center; margin-bottom: 2rem; }
-        .gallery-header h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
-        .gallery-item { aspect-ratio: 1; background: #e8e0d5; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
-        .gallery-item:hover { background: #d4a843; }
-        .gallery-item:hover i { color: #fff; }
-        .gallery-item i { font-size: 2rem; color: rgba(212,168,67,0.3); transition: 0.3s; }
-
-        /* Footer */
         footer { background: #0d0d0d; color: #fff; padding: 4rem 5% 2rem; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #d4a843; }
+        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--amber); margin-bottom: 1rem; }
         .footer-brand p { color: #666; font-size: 0.85rem; line-height: 1.8; margin-bottom: 1.5rem; }
-        .footer-brand .social a { color: #666; margin-right: 1rem; font-size: 1.1rem; transition: 0.3s; }
-        .footer-brand .social a:hover { color: #d4a843; }
-        .footer-col h4 { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #d4a843; margin-bottom: 1rem; }
+        .footer-brand .social a { color: #666; margin-right: 1rem; transition: 0.3s; }
+        .footer-brand .social a:hover { color: var(--amber); }
+        .footer-col h4 { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
         .footer-col a { display: block; color: #666; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; transition: 0.3s; }
-        .footer-col a:hover { color: #d4a843; }
+        .footer-col a:hover { color: var(--amber); }
         .footer-bottom { border-top: 1px solid #222; padding-top: 2rem; text-align: center; }
         .footer-bottom p { font-size: 0.75rem; color: #444; }
 
-        /* Animations */
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .reveal-left { opacity: 0; transform: translateX(-40px); transition: 0.8s; }
         .reveal-left.active { opacity: 1; transform: translateX(0); }
         .stagger > * { opacity: 0; transform: translateY(20px); transition: 0.5s; }
-        .stagger.active > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0s; }
-        .stagger.active > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.1s; }
-        .stagger.active > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.2s; }
-        .stagger.active > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.3s; }
-        .stagger.active > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.4s; }
-        .stagger.active > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay: 0.5s; }
+        .stagger.active > *:nth-child(1) { opacity:1;transform:translateY(0);transition-delay:0s; }
+        .stagger.active > *:nth-child(2) { opacity:1;transform:translateY(0);transition-delay:0.1s; }
+        .stagger.active > *:nth-child(3) { opacity:1;transform:translateY(0);transition-delay:0.2s; }
+        .stagger.active > *:nth-child(4) { opacity:1;transform:translateY(0);transition-delay:0.3s; }
+        .stagger.active > *:nth-child(5) { opacity:1;transform:translateY(0);transition-delay:0.4s; }
+        .stagger.active > *:nth-child(6) { opacity:1;transform:translateY(0);transition-delay:0.5s; }
 
-        /* Counter animation */
-        @keyframes countUp { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
-
-        /* Mobile */
         @media (max-width: 768px) {
             nav ul { display: none; }
             .hero { flex-direction: column; }
             .hero-right { min-height: 50vh; }
-            .hero-left { padding: 6rem 5% 3rem; }
-            .hero h1 { font-size: 2.5rem; }
+            .hero-left { padding: 6rem 5% 3rem 5%; }
+            .hero h1 { font-size: 2.4rem; }
             .hero-stats { gap: 1.5rem; }
             .about-section { flex-direction: column; padding: 4rem 5%; }
             .about-left .floating-badge { right: 1rem; bottom: -1rem; }
             .res-form { grid-template-columns: 1fr; }
-            .res-form .full, .res-form button { grid-column: span 1; }
+            .res-form .full, .res-form textarea, .res-form button { grid-column: span 1; }
             .testi-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .info-bar { gap: 2rem; }
         }
@@ -174,29 +155,29 @@
 </head>
 <body>
     <nav id="navbar">
-        <div class="logo">The Coconut Leaf</div>
-        <ul class="nav-links">
+        <div class="logo">The Ember Room</div>
+        <ul>
             <li><a href="#menu">Menu</a></li>
             <li><a href="#about">Our Story</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#reservation">Reservations</a></li>
         </ul>
-        <button class="book-btn" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reserve Table</button>
+        <a href="#reservation" class="book-btn">Reserve Table</a>
     </nav>
 
     <section class="hero">
         <div class="hero-left">
-            <div class="hero-badge">Est. 2003 — Nungambakkam, Chennai</div>
-            <h1>South Indian<br>Vegetarian, the <em>way it should be</em></h1>
-            <p>Real food made with coconut oil, fresh masalas ground daily, and recipes passed down from my grandmother's kitchen in Madurai. No shortcuts. No compromises.</p>
+            <div class="hero-badge">Est. 2012 · Nungambakkam, Chennai</div>
+            <h1>Chettinad & Tamil<br>Coastal <em>Cuisine</em><br>Done Properly</h1>
+            <p>Not fusion. Not modern reinterpretation. Real Chettinad cooking on coal fires, done the way my grandmother and her mother made it. We don't have a marketing team. We have recipes that have been perfected over five generations of one family.</p>
             <div class="hero-btns">
-                <a href="#menu" class="btn-gold">Explore Menu</a>
-                <a href="#reservation" class="btn-outline">Book a Table</a>
+                <a href="#menu" class="btn-amber">Explore the Menu</a>
+                <a href="#reservation" class="btn-ghost">Book a Table</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><div class="num">22</div><div class="label">Years Serving</div></div>
-                <div class="hero-stat"><div class="num">4.8</div><div class="label">Google Rating</div></div>
-                <div class="hero-stat"><div class="num">15K+</div><div class="label">Reviews</div></div>
+                <div class="hero-stat"><div class="num">13</div><div class="label">Years Running</div></div>
+                <div class="hero-stat"><div class="num">4.7</div><div class="label">Zomato Rating</div></div>
+                <div class="hero-stat"><div class="num">2,800+</div><div class="label">Reviews</div></div>
             </div>
             <div class="hero-scroll">
                 <div class="line"></div>
@@ -204,252 +185,227 @@
             </div>
         </div>
         <div class="hero-right">
-            <div class="img-placeholder"><i class="fas fa-utensils"></i></div>
+            <div class="img"><i class="fas fa-fire"></i></div>
         </div>
     </section>
 
     <div class="strip">
         <div class="strip-content">
-            <span><b>🍛</b> Filter Coffee ₹40</span>
-            <span><b>⭐</b> Crispy Ghee Pongal ₹120</span>
-            <span><b>🌿</b> Kothu Roti ₹180</span>
-            <span><b>🥥</b> Pure Coconut Oil Used</span>
-            <span><b>✨</b> 100% Vegetarian</span>
-            <span><b>📍</b> Open Till 11 PM Daily</span>
-            <span><b>🍛</b> Filter Coffee ₹40</span>
-            <span><b>⭐</b> Crispy Ghee Pongal ₹120</span>
-            <span><b>🌿</b> Kothu Roti ₹180</span>
-            <span><b>🥥</b> Pure Coconut Oil Used</span>
-            <span><b>✨</b> 100% Vegetarian</span>
-            <span><b>📍</b> Open Till 11 PM Daily</span>
+            <span><b>🔥</b> Coal-fire Chettinad Chicken</span>
+            <span><b>🍚</b> Duck Kozhambu — House Specialty</span>
+            <span><b>🌿</b> 100% Vegetarian Options Available</span>
+            <span><b>📍</b> 14 Tables · Gets Busy on Weekends</span>
+            <span><b>☕</b> Filter Coffee & Rose Milk Extra</span>
+            <span><b>🔥</b> Coal-fire Chettinad Chicken</span>
+            <span><b>🍚</b> Duck Kozhambu — House Specialty</span>
+            <span><b>🌿</b> 100% Vegetarian Options Available</span>
+            <span><b>📍</b> 14 Tables · Gets Busy on Weekends</span>
+            <span><b>☕</b> Filter Coffee & Rose Milk Extra</span>
         </div>
     </div>
 
     <section class="menu-section" id="menu">
         <div class="menu-header reveal">
-            <div class="label">The Kitchen</div>
-            <h2>What We Cook</h2>
-            <p>Freshly made every day. No frozen stuff. No pre-packaged masalas.</p>
+            <div class="menu-label">The Kitchen</div>
+            <h2>What We Actually Serve</h2>
+            <p>No fancy French names. No foam or microgreens. Just food made with time and intention.</p>
         </div>
         <div class="menu-cats reveal">
             <span class="menu-cat active">Starters</span>
             <span class="menu-cat">Mains</span>
-            <span class="menu-cat">Breads & Rice</span>
-            <span class="menu-cat">Desserts</span>
-            <span class="menu-cat">Beverages</span>
+            <span class="menu-cat">Biryani & Rice</span>
+            <span class="menu-cat">Sides</span>
         </div>
         <div class="menu-grid stagger">
             <div class="menu-item">
-                <div class="dish-img"><i class="fas fa-circle"></i></div>
+                <div class="dish-img"><i class="fas fa-drumstick-bite"></i></div>
                 <div class="dish-info">
-                    <h3>Crispy Ghee Pongal</h3>
-                    <p>My amma's recipe. Rice and lentils slow-cooked with ghee, topped with fried cashews and curry leaves. Add chutney on the side.</p>
+                    <h3>Chettinad Chicken Fry</h3>
+                    <p>Small pieces of chicken marinated overnight in our home-ground masala, then fried on the coal flame. Crispy outside, juicy inside. Takes 20 minutes because we don't rush it.</p>
                 </div>
-                <div class="price">₹120</div>
+                <div class="price">₹240</div>
             </div>
             <div class="menu-item">
-                <div class="dish-img"><i class="fas fa-circle"></i></div>
+                <div class="dish-img"><i class="fas fa-fish"></i></div>
                 <div class="dish-info">
-                    <h3>Medu Vada (4 pcs)</h3>
-                    <p>Four perfectly crispy vadas with thin sambar and fresh coconut chutney. We've been told these are better than what奶奶 makes — we'll take that compliment.</p>
+                    <h3>Meen Varuval (Seer Fish)</h3>
+                    <p>Coastal Tamil fish fry. Seer fish coated in chilli powder, turmeric, and curry leaves, shallow fried in coconut oil. We get fresh stock from Tuticorin every morning.</p>
+                </div>
+                <div class="price">₹320</div>
+            </div>
+            <div class="menu-item">
+                <div class="dish-img"><i class="fas fa-seedling"></i></div>
+                <div class="dish-info">
+                    <h3>Paruppu Vada (3 pcs)</h3>
+                    <p>Golden fried dal vadas — the kind that are crispy on the outside and soft in the middle. Served with coconut chutney and sambaar. These are what regulars order first before looking at the menu.</p>
                 </div>
                 <div class="price">₹90</div>
             </div>
             <div class="menu-item">
-                <div class="dish-img"><i class="fas fa-circle"></i></div>
+                <div class="dish-img"><i class="fas fa-drumstick-bite"></i></div>
                 <div class="dish-info">
-                    <h3>Mushroom 65</h3>
-                    <p>Crispy fried mushrooms tossed with curry leaves, green chillies, and our secret masala blend. Addictive — we warn you.</p>
+                    <h3>Duck Kozhambu</h3>
+                    <p>Our family's showpiece. Duck slow-cooked in a rich tamarind and poppy seed gravy with a masala that's been in the family since 1962. Order ahead — we marinate for 24 hours.</p>
                 </div>
-                <div class="price">₹220</div>
+                <div class="price">₹420</div>
             </div>
             <div class="menu-item">
-                <div class="dish-img"><i class="fas fa-circle"></i></div>
+                <div class="dish-img"><i class="fas fa-pepper-hot"></i></div>
                 <div class="dish-info">
-                    <h3>Schezwan Idli</h3>
-                    <p>Steamed idlis cut and tossed with Indo-Chinese schezwan sauce, soy, and spring onions. Kids go crazy for this. Adults too.</p>
+                    <h3>Naatu Kozhi Kozhambu</h3>
+                    <p>Country chicken cooked with home-ground coconut, jeera, and whole spices. The chicken is from our supplier in Kanchipuram — what they call "real" chicken, not the farm-raised kind. Rich, tangy, and spicy.</p>
                 </div>
-                <div class="price">₹160</div>
+                <div class="price">₹280</div>
             </div>
             <div class="menu-item">
-                <div class="dish-img"><i class="fas fa-circle"></i></div>
+                <div class="dish-img"><i class="fas fa-bowl-rice"></i></div>
                 <div class="dish-info">
-                    <h3>Dal Tadka</h3>
-                    <p>Yellow dal tempered with ghee, cumin, garlic, and dried red chillies. Simple, honest, and the kind of comfort food that hits different.</p>
+                    <h3>Kallan Biryani</h3>
+                    <p>Mutton biryani made the Chettinad way — dry, aromatic, with frimjee (whole spices) blooming in ghee. Served with dalcha and raita. We use Kaima rice from Salem, not the usual Basmati.</p>
                 </div>
-                <div class="price">₹150</div>
-            </div>
-            <div class="menu-item">
-                <div class="dish-img"><i class="fas fa-circle"></i></div>
-                <div class="dish-info">
-                    <h3>Chettinad Vegetable Curry</h3>
-                    <p>A proper Chettinad curry with freshly ground masala — pepper, fennel, cinnamon, cloves. Not for those who like it mild.</p>
-                </div>
-                <div class="price">₹200</div>
+                <div class="price">₹350</div>
             </div>
         </div>
-        <p style="text-align:center;margin-top:2rem;font-size:0.85rem;color:#999;" class="reveal">All items available with or without onion and garlic. Just ask your server. ☕</p>
+        <p style="text-align:center;margin-top:2rem;font-size:0.85rem;color:#999;" class="reveal">All meat dishes available without spice on request. Inform your server. ☕</p>
     </section>
 
     <section class="about-section" id="about">
-        <div class="about-left reveal-left">
-            <div class="img-wrap">
-                <div class="main-img"><i class="fas fa-pepper-hot"></i></div>
-                <div class="floating-badge">
-                    <span class="year">22+</span>
-                    <span>Years</span>
-                </div>
+        <div class="about-left reveal-left" style="position:relative;">
+            <div class="main-img"><i class="fas fa-fire-burner"></i></div>
+            <div class="floating-badge">
+                <span class="year">1962</span>
+                <span>Recipe Origin</span>
             </div>
         </div>
         <div class="about-right reveal">
-            <div class="label">Our Story</div>
-            <h2>Started in My Mother's<br>Kitchen in 2003</h2>
-            <p>The Coconut Leaf began with my mother Meenakshi running a tiny 8-table mess in Nungambakkam. She made dosas on a iron griddle, ground her masalas by hand every morning at 5 AM, and refused to compromise on coconut oil even when it was expensive.</p>
-            <p>22 years later, nothing has changed except the size. Same family recipes, same dedication to real food. My wife and I run it now, and our kids help on weekends. This is our family's contribution to keeping South Indian vegetarian food honest.</p>
-            <div class="quote">"If my grandmother wouldn't recognize the taste, we don't serve it."</div>
-            <p>— Murali Krishnan, Founder</p>
+            <div class="tag">Our Story</div>
+            <h2>Five Generations.<br>One Kitchen.</h2>
+            <p>My great-grandmother, Valliammai, ran a small tiffin centre near the Chettinad railway station in the 1950s. Her specialty was Chettinad chicken — she used to say the secret was not the masala but the patience. She marinated overnight. She cooked on coal. She never compromised.</p>
+            <p>My grandmother, Dhanam, took the recipes to Chennai in 1978 and ran a mess for factory workers near Ambattur. My mother, Kavitha, expanded to a proper restaurant in 2002. I — Surya — took over in 2012 after a brief career in banking that taught me exactly how much I didn't want to be inside an office.</p>
+            <div class="quote">"The masala is ground fresh every morning at 5 AM. If it's not right, we don't serve it. Simple as that."</div>
+            <p class="tagline">— Surya Kesavan, Third Generation</p>
         </div>
     </section>
 
-    <section class="reservation" id="reservation">
-        <div class="label reveal">Book Your Table</div>
-        <h2 class="reveal">Come Eat With Us</h2>
-        <p class="reveal">Weekend dinners get busy — we recommend booking 2 days ahead. Walk-ins welcome, subject to availability.</p>
-        <form class="res-form reveal">
-            <input type="text" placeholder="Your Name">
-            <input type="tel" placeholder="Phone Number">
-            <input type="date">
-            <select>
-                <option>Number of Guests</option>
-                <option>1-2 Guests</option>
-                <option>3-4 Guests</option>
-                <option>5-6 Guests</option>
-                <option>7+ Guests</option>
-            </select>
-            <select class="full">
-                <option>Preferred Time</option>
-                <option>12:00 PM</option>
-                <option>1:00 PM</option>
-                <option>6:30 PM</option>
-                <option>7:30 PM</option>
-                <option>8:30 PM</option>
-                <option>9:00 PM</option>
-            </select>
-            <input type="email" placeholder="Email (optional)" class="full">
-            <button type="submit">Request Reservation</button>
-        </form>
-        <p style="margin-top:1.5rem;font-size:0.8rem;color:#999;" class="reveal">Or call us directly: <strong>+91 98765 43210</strong> · We reply within the hour</p>
-    </section>
-
-    <section class="testimonials" id="reviews">
-        <div style="text-align:center;margin-bottom:3rem;" class="reveal">
-            <div class="label" style="font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:#d4a843;">Reviews</div>
-            <h2 style="font-family:'Playfair Display',serif;font-size:2rem;">What People Say</h2>
+    <section class="testimonials" id="testimonials">
+        <div class="testi-header reveal">
+            <div class="label" style="font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:#c4722b;">Reviews</div>
+            <h2>What People Say</h2>
         </div>
         <div class="testi-grid stagger">
             <div class="testi-card">
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                <p>"I'm a food blogger and I've been to most famous South Indian restaurants in Chennai. The Coconut Leaf is the one I take my parents to. The taste is exactly like what they grew up eating. The medu vada is the best I've had outside of a Tamil Nadu railway station."</p>
-                <h4>Karthik Rajan</h4>
-                <span>Food Blogger, Chennai · 85 reviews</span>
+                <p>"I've eaten at most 'authentic' Chettinad restaurants in Chennai and most of them are either too oily, too spicy for the sake of it, or just not interesting. The Ember Room is different — the Duck Kozhambu is exactly what my Tamilian house helps' mother used to make. The coal fire cooking makes a real difference. Book ahead — they only have 14 tables and it's always full."</p>
+                <h4>Mithran Rajan</h4>
+                <span>Attorney, Nungambakkam · Zomato: 4.5/5</span>
             </div>
             <div class="testi-card">
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                <p>"I'm vegetarian and have dietary restrictions. The staff here is incredibly understanding — they even made a custom dish once without onion or garlic when I asked. The Chettinad curry is SPICY but so good. Filter coffee is excellent too."</p>
-                <h4>Priya Venkatesh</h4>
-                <span>Software Engineer · Google Reviews</span>
+                <p>"I'm vegetarian and usually struggle at non-veg focused restaurants. The staff here was genuinely helpful — went out of their way to suggest the vegetable kurma, avial, and pesarattu which aren't even on the main menu (they just make it if you ask). The paruppu vada is the best I've had in Chennai. The filter coffee comes in a proper brass tumbler. Details matter here."</p>
+                <h4>Devika Sundaram</h4>
+                <span>Professor, Loyola College · 87 reviews on Zomato</span>
             </div>
         </div>
     </section>
 
-    <div class="info-bar">
-        <div class="info-item"><i class="fas fa-clock"></i> Mon-Sun: 11:00 AM – 3:00 PM, 6:30 PM – 11:00 PM</div>
-        <div class="info-item"><i class="fas fa-map-marker-alt"></i> 12 Khader Nawaz Road, Nungambakkam, Chennai 600034</div>
-        <div class="info-item"><i class="fas fa-phone"></i> +91 98765 43210</div>
-    </div>
-
-    <section class="gallery" id="gallery">
-        <div class="gallery-header">
-            <h3>A Visual Taste of Our Kitchen</h3>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-            <div class="gallery-item"><i class="fas fa-image"></i></div>
-        </div>
+    <section class="reservation" id="reservation">
+        <div class="label reveal" style="font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:#c4722b;">Book a Table</div>
+        <h2 class="reveal">Come Eat With Us</h2>
+        <p class="reveal">Weekend dinners book out 3-4 days ahead. Lunch is easier — walk-ins usually fine before 1 PM. Fill in below and we'll confirm by phone within the hour during open hours.</p>
+        <form class="res-form reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Request Sent ✓'; this.querySelector('button').style.background='#2d7a4f';">
+            <input type="text" placeholder="Your full name">
+            <input type="tel" placeholder="Phone number">
+            <input type="email" placeholder="Email address">
+            <input type="date">
+            <select>
+                <option>How many people?</option>
+                <option>Just me</option>
+                <option>2 people</option>
+                <option>3-4 people</option>
+                <option>5-6 people</option>
+                <option>7+ people (call directly)</option>
+            </select>
+            <select class="full">
+                <option>Preferred time slot</option>
+                <option>12:00 PM</option>
+                <option>12:30 PM</option>
+                <option>1:00 PM</option>
+                <option>1:30 PM</option>
+                <option>6:30 PM</option>
+                <option>7:00 PM</option>
+                <option>7:30 PM</option>
+                <option>8:00 PM</option>
+                <option>8:30 PM</option>
+                <option>9:00 PM</option>
+            </select>
+            <textarea placeholder="Any dietary requirements, special occasion, or seating preference? (e.g., outdoor seating, anniversary setup)"></textarea>
+            <button type="submit">Request Reservation</button>
+        </form>
+        <p style="margin-top:1.5rem;font-size:0.8rem;color:#999;" class="reveal">Or call us directly: <strong>+91 98400 58231</strong> · We confirm by phone, not email</p>
     </section>
+
+    <div class="info-bar">
+        <div class="info-item"><i class="fas fa-clock"></i> Mon-Sun: 12:00 PM – 3:30 PM, 6:30 PM – 10:30 PM</div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i> 8/3, Khader Nawaz Khan Road, Nungambakkam, Chennai 600006</div>
+        <div class="info-item"><i class="fas fa-phone"></i> +91 98400 58231</div>
+    </div>
 
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
-                <div class="logo">The Coconut Leaf</div>
-                <p>South Indian vegetarian served the way it should be — no shortcuts, no compromises, just honest food made with love.</p>
+                <div class="logo">The Ember Room</div>
+                <p>Chettinad and coastal Tamil cuisine made the way it's been made in our family for five generations. 14 tables. No reservations taken online. Just call.</p>
                 <div class="social">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-google"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Navigate</h4>
                 <a href="#menu">Menu</a>
                 <a href="#about">Our Story</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#reviews">Reviews</a>
+                <a href="#testimonials">Reviews</a>
                 <a href="#reservation">Reservations</a>
             </div>
             <div class="footer-col">
                 <h4>Hours</h4>
-                <a href="#">Mon-Sun: 11 AM – 3 PM</a>
-                <a href="#">Mon-Sun: 6:30 PM – 11 PM</a>
-                <a href="#">Open all days</a>
-                <a href="#">Closed for annual maintenance: Jan 1-3</a>
+                <a href="#">Mon-Sun: 12–3:30 PM</a>
+                <a href="#">Mon-Sun: 6:30–10:30 PM</a>
+                <a href="#">14 tables only</a>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <a href="#">12 Khader Nawaz Road</a>
-                <a href="#">Nungambakkam, Chennai 600034</a>
-                <a href="#">+91 98765 43210</a>
-                <a href="#">hello@coconutleaf.in</a>
+                <a href="#">8/3, Khader Nawaz Khan Road</a>
+                <a href="#">Nungambakkam, Chennai 600006</a>
+                <a href="tel:+919840058231">+91 98400 58231</a>
+                <a href="#">No email — call us</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 The Coconut Leaf. Made with 🥥 and ❤️ in Chennai.</p>
+            <p>© 2026 The Ember Room. Family owned since 2012.</p>
         </div>
     </footer>
 
     <script>
-        // Nav scroll
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
         });
-
-        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
         }, { threshold: 0.12 });
         document.querySelectorAll('.reveal, .reveal-left, .stagger').forEach(el => observer.observe(el));
-
-        // Menu category tabs
         document.querySelectorAll('.menu-cat').forEach(cat => {
             cat.addEventListener('click', () => {
                 document.querySelectorAll('.menu-cat').forEach(c => c.classList.remove('active'));
                 cat.classList.add('active');
             });
         });
-
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 e.preventDefault();
                 const t = document.querySelector(a.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
             });
         });
     </script>
